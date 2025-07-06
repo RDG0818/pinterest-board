@@ -1,0 +1,150 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #f0f0f0;
+}
+
+h1 {
+  text-align: center;
+  padding: 1rem;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 72px;
+  background-color: #2c2c2c;
+  color: white;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* spacing between icons */
+  align-items: center;
+  width: 100%; /* optional: makes hover area wider */
+}
+
+.sidebar i {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.sidebar i:hover {
+  color: white;
+}
+
+.sidebar li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar li:hover {
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.gallery-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  overflow-x: hidden;
+}
+
+.gallery {
+  column-count: 6;
+  column-gap: 15px;
+  padding: 20px;
+  max-width: 1800px;
+}
+@media (max-width: 900px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+@media (max-width: 600px) {
+  .gallery {
+    column-count: 1;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.image-wrapper img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0); /* start transparent */
+  transition: background 0.3s ease;
+  z-index: 5;
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.03);
+}
+.image-wrapper:hover .overlay {
+  background: rgba(0, 0, 0, 0.1); 
+}
+
+.save-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #e60023;
+  color: white;
+  border: none;
+  border-radius: 22px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.image-wrapper:hover .save-btn {
+  opacity: 1;
+}
+.save-btn:hover {
+  background-color: #cc001f;
+  transform: scale(1.05);
+}
