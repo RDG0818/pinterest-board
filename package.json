@@ -10,5 +10,10 @@
   },
   "devDependencies": {
     "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "imagesloaded": "^5.0.0",
+    "infinite-scroll": "^5.0.0",
+    "masonry-layout": "^4.2.2"
   }
 }

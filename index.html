@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pinterest Board</title>
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    
     <div class="page">
         <aside class="sidebar">
             <ul>
@@ -21,8 +20,16 @@
         </aside>
 
         <main class="gallery-container">
-            <div class="gallery"></div>
+            <div class="gallery">
+                <div class="gutter-sizer"></div>
+            </div>
+            <div id="scroll-trigger" style="height: 50px;"></div>
         </main>
+    </div>
+
+    <div id="image-modal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
     </div>
 
     <script type="module" src="/src/main.js"></script>

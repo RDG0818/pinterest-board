@@ -1,20 +1,94 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
-  padding: 0;
   background: #000000;
-  color: #f0f0f0;
 }
 
-h1 {
-  text-align: center;
-  padding: 1rem;
+.grid-item {
+  width: 300px; 
+  margin-bottom: 10px; 
+}
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .page {
   display: flex;
-  flex-direction: row;
-  min-height: 100vh;
+}
+
+.image-wrapper {
+  float: left;
+  width: calc((100% - 5 * 15px) / 6); 
+  margin-bottom: 15px;
+  
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-wrapper img {
+  display: block; 
+  width: 100%;
+  border-radius: 12px; 
+  transition: transform 0.2s ease;
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0); 
+  transition: background 0.3s ease;
+  z-index: 5;
+}
+
+.image-wrapper:hover .overlay {
+  background: rgba(0, 0, 0, 0.1); 
+}
+
+.save-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #e60023;
+  color: white;
+  border: none;
+  border-radius: 22px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0; 
+  transition: transform 0.1s ease, background-color 0.1s ease, opacity 0.1s ease;
+  z-index: 10;
+}
+
+.image-wrapper:hover .save-btn {
+  opacity: 1; 
+}
+
+.save-btn:hover {
+  transform: scale(1.03);
+  background-color: #cc001f;
+}
+
+.gallery-container {
+  flex: 1;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .sidebar {
@@ -36,9 +110,9 @@ h1 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 40px; /* spacing between icons */
+  gap: 40px; 
   align-items: center;
-  width: 100%; /* optional: makes hover area wider */
+  width: 100%; 
 }
 
 .sidebar i {
@@ -54,9 +128,11 @@ h1 {
 }
 
 .sidebar li {
-  width: 100%;
+  width: 48px; 
+  height: 48px; 
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .sidebar li:hover {
@@ -65,86 +141,45 @@ h1 {
   cursor: pointer;
 }
 
-.gallery-container {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  overflow-x: hidden;
-}
-
-.gallery {
-  column-count: 6;
-  column-gap: 15px;
-  padding: 20px;
-  max-width: 1800px;
-}
-@media (max-width: 900px) {
-  .gallery {
-    column-count: 2;
-  }
-}
-@media (max-width: 600px) {
-  .gallery {
-    column-count: 1;
-  }
-}
-
-.image-wrapper {
-  position: relative;
-  margin-bottom: 15px;
-  break-inside: avoid;
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.2s ease;
-}
-
-.image-wrapper img {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  transition: transform 0.2s ease;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 100;
   left: 0;
-  height: 100%;
+  top: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0); /* start transparent */
-  transition: background 0.3s ease;
-  z-index: 5;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
-.image-wrapper:hover img {
-  transform: scale(1.03);
-}
-.image-wrapper:hover .overlay {
-  background: rgba(0, 0, 0, 0.1); 
+.modal--active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.save-btn {
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 85vw;
+  max-height: 85vh;
+  border-radius: 8px;
+}
+
+.close-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #e60023;
-  color: white;
-  border: none;
-  border-radius: 22px;
-  padding: 10px 18px;
-  font-size: 0.95rem;
+  top: 25px;
+  right: 45px;
+  color: #fff;
+  font-size: 50px;
   font-weight: bold;
+  transition: 0.2s;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.2s ease;
-  z-index: 10;
 }
 
-.image-wrapper:hover .save-btn {
-  opacity: 1;
-}
-.save-btn:hover {
-  background-color: #cc001f;
-  transform: scale(1.05);
+.close-btn:hover,
+.close-btn:focus {
+  color: #bbb;
+  text-decoration: none;
 }
