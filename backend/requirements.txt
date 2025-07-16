@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+numpy
+pandas
+sentence-transformers
+pillow
+tqdm
