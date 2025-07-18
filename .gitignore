@@ -26,3 +26,4 @@ dist-ssr
 .env
 backend/image_dataset
 backend/image_sorter/reference_images
+backend/audio_dataset

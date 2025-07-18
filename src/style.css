@@ -414,11 +414,12 @@ canvas {
 }
 
 .image-preview {
-  flex: 1; /* This makes it take up the other half of the space */
+  flex: 1; 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 450px; /* Gives the box a nice height */
+  min-height: 450px; 
   background-color: #1a1a1a;
   border-radius: 12px;
   color: #888;
@@ -467,4 +468,12 @@ canvas {
   font-size: 0.9rem;
   font-weight: 500;
   white-space: nowrap; 
+}
+
+.image-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #eee;
+  margin: 10px 0 5px;
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 // src/music.js
 document.addEventListener('DOMContentLoaded', () => {
+  const BACKEND_URL = 'http://localhost:8000';
   const selector = document.getElementById('image-selector');
   const btn      = document.getElementById('get-songs-btn');
   const list     = document.getElementById('song-list');
@@ -24,31 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     selector.appendChild(img);
   }
 
-  async function recommendSongsForImage(imageSrc) {
-    const encodedSrc = encodeURIComponent(imageSrc);
-
-    try {
-      const res = await fetch(`http://localhost:8000/match-music/?image_id=${encodedSrc}`);
-      if (!res.ok) throw new Error("Failed to fetch music.");
-
-      const data = await res.json();
-      return [{
-        title: data.song_title,
-        artist: data.mood || "Unknown Mood",
-        preview: data.audio_url
-      }];
-    } catch (err) {
-      console.error("Music fetch error:", err);
-      return [];
-    }
-  }
-
   btn.addEventListener('click', async () => {
     if (!selectedSrc) return;
 
     try {
       const response = await fetch(`http://localhost:8000/match-music/?image_id=${encodeURIComponent(selectedSrc)}`);
-      const jsonData = await response.json(); // ✅ WAIT for the data to resolve
+      const jsonData = await response.json(); 
 
       console.log('Songs received from backend:', jsonData);
 
@@ -69,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.innerHTML = `
           <h3>${track.song_title}</h3>
           <p>${track.mood}</p>
-          <audio controls src="${track.audio_url}"></audio>
+          <audio controls src="${BACKEND_URL}${track.audio_url}"></audio>
         `;
         list.appendChild(item);
       }

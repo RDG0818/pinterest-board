@@ -6,3 +6,9 @@ pandas
 sentence-transformers
 pillow
 tqdm
+mutagen
+imagehash
+ollama
+timm
+transformers
+accelerate
