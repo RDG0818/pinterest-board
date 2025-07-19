@@ -267,8 +267,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rawData = await response.json();
 
     const dataPoints = rawData.map(d => ({
-        x: d.x,
-        y: d.y,
+        x: +(d.x + (Math.random() - 0.5)).toFixed(2),
+        y: +(d.y + (Math.random() - 0.5)).toFixed(2),
         r: sigmoid(d.r),
         label: d.label,
         imageSrc: d.imageSrc,
